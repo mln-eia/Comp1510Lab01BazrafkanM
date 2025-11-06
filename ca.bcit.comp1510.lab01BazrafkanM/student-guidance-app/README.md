@@ -3,10 +3,11 @@
 A modern web app for students who want tailored guidance on potential career paths and programs.
 
 ## Features
-- **Career Compass Quiz** — A three question personality quiz that surfaces a dominant career theme and saves personalized recommendations to Firestore.
+- **Career Compass Quiz** — A three question personality quiz that surfaces a dominant career theme, previews guidance in-app, and saves personalized recommendations to Firestore.
 - **Program Explorer** — Real-time list of study programs filterable by field and region.
+- **Smart Program Highlights** — Quiz-aligned programs are automatically spotlighted so students know where to focus first.
 - **Career News Feed** — Curated external articles with relative timestamps so students can quickly scan fresh opportunities.
-- **Goal Tracker** — Lightweight personal plan with deadlines and completion toggles to stay on track.
+- **Goal Tracker** — Lightweight personal plan with deadlines, completion stats, and toggles to stay on track.
 - **Live Profiles** — Student identity settings persist to Firestore, keeping their dashboard synced across devices.
 
 ## Tech Stack

@@ -121,6 +121,7 @@ export default function App() {
       userId,
       recommendations: result.recommendations,
       dominantTheme: result.dominantTheme,
+      dominantThemeKey: result.dominantThemeKey,
       createdAt: serverTimestamp()
     });
   };
@@ -150,7 +151,7 @@ export default function App() {
       <main className="layout">
         <section className="primary">
           <Quiz onComplete={handleQuizComplete} latestRecommendation={latestRecommendation} />
-          <ProgramsList programs={programs} />
+          <ProgramsList programs={programs} highlightThemeKey={latestRecommendation?.dominantThemeKey} />
         </section>
         <section className="secondary">
           <NewsFeed news={news} />
