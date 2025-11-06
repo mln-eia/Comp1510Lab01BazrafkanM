@@ -1,0 +1,367 @@
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.75rem;
+  margin-top: 1.5rem;
+}
+
+.primary,
+.secondary {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 20px 40px -24px rgba(15, 23, 42, 0.35);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.card h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.card p.description {
+  margin-top: -0.3rem;
+  color: #5f7286;
+  font-size: 0.95rem;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  background-color: rgba(59, 130, 246, 0.12);
+  color: #1d4ed8;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.section-heading span {
+  color: #5f7286;
+  font-size: 0.9rem;
+}
+
+button.primary {
+  background: linear-gradient(90deg, #2563eb 0%, #6366f1 100%);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.1rem;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 30px -18px rgba(37, 99, 235, 0.7);
+}
+
+button.ghost {
+  background: transparent;
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+button.ghost:hover {
+  border-color: rgba(99, 102, 241, 0.6);
+  color: #4f46e5;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+@media (max-width: 960px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: radial-gradient(circle at top left, rgba(99, 102, 241, 0.08), transparent 60%), #fff;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.header .subhead {
+  margin: 0.3rem 0 0;
+  color: #475569;
+}
+
+.header .profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.header .profile h2 {
+  margin: 0;
+}
+
+.header .profile .user-id {
+  display: inline-block;
+  margin-top: 0.25rem;
+  color: #6366f1;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.profile-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.profile-form .field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.profile-form .actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.quiz fieldset {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  padding: 1rem;
+  margin: 0 0 1rem;
+}
+
+.quiz legend {
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.quiz .options {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.quiz label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 12px;
+  background: rgba(148, 163, 184, 0.12);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.quiz label.selected {
+  background: rgba(99, 102, 241, 0.18);
+  transform: translateY(-1px);
+}
+
+.quiz label input {
+  margin-top: 0.2rem;
+}
+
+.quiz-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.quiz-actions .last-result {
+  margin: 0;
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #475569;
+  font-weight: 500;
+}
+
+.programs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.program {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.program-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.program .meta {
+  margin: 0.25rem 0 0;
+  color: #64748b;
+}
+
+.news-list,
+.goal-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.news-item h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+}
+
+.news-item p {
+  margin: 0.35rem 0 0;
+  color: #475569;
+}
+
+.news-item .meta {
+  display: flex;
+  gap: 0.75rem;
+  color: #64748b;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.goal-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.goal-form .field-row {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.goal-list .goal {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 12px;
+}
+
+.goal-list .goal.complete {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+.goal-list .goal .meta {
+  margin: 0.35rem 0 0;
+  color: #16a34a;
+  font-weight: 500;
+}
+
+.goal-list .goal .notes {
+  margin: 0.4rem 0 0;
+  color: #475569;
+}
+
+.goal-list .goal button.completed {
+  border-color: rgba(34, 197, 94, 0.4);
+  color: #15803d;
+}
+
+.empty {
+  text-align: center;
+  color: #94a3b8;
+}
+
+@media (max-width: 720px) {
+  .app {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .quiz-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.header .identity {
+  display: grid;
+  gap: 0.35rem;
+}
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field-group span,
+.field-group label {
+  font-weight: 600;
+  color: #1f2937;
+}
