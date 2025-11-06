@@ -3,7 +3,16 @@ import { useMemo, useState } from 'react';
 const FIELD_OPTIONS = ['Technology', 'Business', 'Health', 'Creative Arts', 'Education', 'Trades'];
 const REGION_OPTIONS = ['Canada', 'United States', 'Europe', 'Remote', 'Asia-Pacific'];
 
-export default function ProgramsList({ programs }) {
+const THEME_TO_FIELDS = {
+  realistic: ['Trades', 'Technology'],
+  investigative: ['Technology', 'Health'],
+  artistic: ['Creative Arts', 'Business'],
+  social: ['Education', 'Health'],
+  enterprising: ['Business', 'Education'],
+  conventional: ['Business', 'Technology']
+};
+
+export default function ProgramsList({ programs, highlightThemeKey }) {
   const [fieldFilter, setFieldFilter] = useState('All');
   const [regionFilter, setRegionFilter] = useState('All');
 
@@ -14,6 +23,11 @@ export default function ProgramsList({ programs }) {
       return matchesField && matchesRegion;
     });
   }, [programs, fieldFilter, regionFilter]);
+
+  const recommendedFields = useMemo(
+    () => (highlightThemeKey ? THEME_TO_FIELDS[highlightThemeKey] ?? [] : []),
+    [highlightThemeKey]
+  );
 
   return (
     <section className="card">
@@ -49,26 +63,31 @@ export default function ProgramsList({ programs }) {
         </label>
       </div>
       <ul className="programs">
-        {filteredPrograms.map((program) => (
-          <li key={program.id} className="program">
-            <div className="program-header">
-              <div>
-                <h3>{program.name}</h3>
-                <p className="meta">{program.provider ?? 'Independent study'}</p>
+        {filteredPrograms.map((program) => {
+          const recommended =
+            recommendedFields.includes(program.field) || program.themes?.includes?.(highlightThemeKey);
+          return (
+            <li key={program.id} className={recommended ? 'program recommended' : 'program'}>
+              <div className="program-header">
+                <div>
+                  <h3>{program.name}</h3>
+                  <p className="meta">{program.provider ?? 'Independent study'}</p>
+                </div>
+                <ul className="tag-list">
+                  <li className="tag">{program.field ?? 'General'}</li>
+                  <li className="tag">{program.region ?? 'Global'}</li>
+                </ul>
               </div>
-              <ul className="tag-list">
-                <li className="tag">{program.field ?? 'General'}</li>
-                <li className="tag">{program.region ?? 'Global'}</li>
-              </ul>
-            </div>
-            <p>{program.summary ?? 'Details coming soon from your advisor.'}</p>
-            {program.link ? (
-              <a className="ghost" href={program.link} target="_blank" rel="noreferrer">
-                View details
-              </a>
-            ) : null}
-          </li>
-        ))}
+              <p>{program.summary ?? 'Details coming soon from your advisor.'}</p>
+              {recommended ? <p className="recommended-note">Tailored to your latest quiz results</p> : null}
+              {program.link ? (
+                <a className="ghost" href={program.link} target="_blank" rel="noreferrer">
+                  View details
+                </a>
+              ) : null}
+            </li>
+          );
+        })}
         {!filteredPrograms.length ? <li className="empty">No programs match your filters yet.</li> : null}
       </ul>
     </section>

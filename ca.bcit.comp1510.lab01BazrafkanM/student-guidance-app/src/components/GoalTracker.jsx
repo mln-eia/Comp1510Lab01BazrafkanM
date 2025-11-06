@@ -12,6 +12,16 @@ export default function GoalTracker({ goals, onCreate, onStatusChange }) {
       .slice(0, 6);
   }, [goals]);
 
+  const progress = useMemo(() => {
+    const totalCount = goals.length;
+    const completedCount = goals.filter((goal) => goal.completed).length;
+    return {
+      totalCount,
+      completedCount,
+      percentage: totalCount ? Math.round((completedCount / totalCount) * 100) : 0
+    };
+  }, [goals]);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -37,6 +47,11 @@ export default function GoalTracker({ goals, onCreate, onStatusChange }) {
         <div>
           <h2>Goal Tracker</h2>
           <p className="description">Plan your next steps, set deadlines, and celebrate progress.</p>
+        </div>
+        <div className="goal-progress">
+          <strong>{progress.completedCount}</strong>
+          <span>/{progress.totalCount} complete</span>
+          <span className="percentage">{progress.percentage}%</span>
         </div>
       </div>
       <form className="goal-form" onSubmit={handleSubmit}>

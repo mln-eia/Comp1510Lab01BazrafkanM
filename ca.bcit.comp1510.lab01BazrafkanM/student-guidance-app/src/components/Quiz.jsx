@@ -78,6 +78,16 @@ export default function Quiz({ onComplete, latestRecommendation }) {
     return topTheme ?? null;
   }, [answers]);
 
+  const primaryTheme = useMemo(() => {
+    if (!dominantTheme) {
+      return null;
+    }
+    return {
+      key: dominantTheme,
+      ...CAREER_THEMES[dominantTheme]
+    };
+  }, [dominantTheme]);
+
   const recommendations = useMemo(() => {
     if (!dominantTheme) {
       return [];
@@ -105,7 +115,11 @@ export default function Quiz({ onComplete, latestRecommendation }) {
     }
     try {
       setSubmitting(true);
-      await onComplete({ dominantTheme: CAREER_THEMES[dominantTheme].name, recommendations });
+      await onComplete({
+        dominantTheme: CAREER_THEMES[dominantTheme].name,
+        dominantThemeKey: dominantTheme,
+        recommendations
+      });
       setAnswers({});
     } finally {
       setSubmitting(false);
@@ -149,6 +163,17 @@ export default function Quiz({ onComplete, latestRecommendation }) {
             <p className="last-result">Latest: {latestRecommendation.dominantTheme}</p>
           ) : null}
         </div>
+        {hasCompleted && primaryTheme ? (
+          <aside className="quiz-insight">
+            <h3>{primaryTheme.name}</h3>
+            <p>{primaryTheme.summary}</p>
+            <ul>
+              {recommendations.map((recommendation) => (
+                <li key={recommendation}>{recommendation}</li>
+              ))}
+            </ul>
+          </aside>
+        ) : null}
       </form>
     </section>
   );
